@@ -1,0 +1,86 @@
+{% extends "interfaz.html" %}\
+
+{% block title %}Administrador{% endblock %}
+{% block content %}
+<h1 class="h2"> Dashboard</h1>
+<p>Welcome back, {{ correo }}!</p>
+<table class="table caption-top">
+    <h1>Categorias</h1>
+    <thead>   
+        <div class="container">
+
+                <div class="box">
+                    <h1>Lista de Categorias</h1><br>
+                    <form id="list-form">
+                        <input type="text" name="name" id="name"/>
+                        <input type="submit" value="Create"/>
+                    </form>
+                </div>   
+                <div class="col-4">
+                    <a class="thumb-menu">                  
+                        <ul id="lists">
+                            {% for list in categorias%}
+
+                                <li><a href="/admin/categoria/{{list.id}}">{{list.nombre_categoria}}</a></li>
+                                
+                            {% endfor %}
+                        </ul>
+                    </a>
+                </div> 
+        </div>
+        <br>
+        <br>
+      <tr>
+        <div class="box">
+            <h1>Lista of Productos</h1><br>
+            <form action="{{ url_for('insert') }}" method="POST">
+                <input type="text" id="producto" name="producto" placeholder="Producto" />
+                <input type="text" id="precio" name="precio" placeholder="Precio" />
+                
+                <input type="submit" value="Create"/>
+            </form>
+        </div>    
+        <th scope="col">#</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <div class="box">
+          
+                <th id="catalogos">
+                {% for cat in catalogos %}
+                <tr>
+                    <td>
+                        
+                        {{ cat.id }}
+                        
+                    </td>
+                    <td>
+                        {{ cat.producto }}
+                    </td>
+                    <td>
+                        {{ cat.precio }}
+                    </td>
+                    <td>
+                        {{ cat.cantidad }}
+                    </td>
+                    
+                    <td>
+
+                        <a href="/delete/{{cat.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Estas seguro de eliminar esto?')">Delete</a>
+                    </td>
+                </tr>    
+                {% endfor %}
+                </th>
+           
+        </div>
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}
