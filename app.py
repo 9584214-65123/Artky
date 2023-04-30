@@ -20,12 +20,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 DB_HOST = "localhost"
 DB_NAME = "artky"
 DB_USER = "postgres"
-DB_PASS = "carro"
+DB_PASS = "1862"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']=  'postgresql://postgres:carro@localhost:5432/artky'
+app.config['SQLALCHEMY_DATABASE_URI']=  'postgresql://postgres:1862@localhost:5432/artky'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.secret_key = 'cairocoders-ednalan'
